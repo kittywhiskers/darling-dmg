@@ -1,6 +1,6 @@
 #include <iostream>
 #include "FileReader.h"
-#include "DMGDisk.h"
+#include <drludif/DMGDisk.h>
 
 void readPartition(DMGDisk* dmg, int index);
 

@@ -2,19 +2,18 @@
 #include <cstring>
 #include <iostream>
 #include <cstdio>
-#include "be.h"
+#include <drludif/endian.h>
 #include <errno.h>
 #include <stdexcept>
 #include <limits>
 #include <functional>
 #include "HFSVolume.h"
-#include "AppleDisk.h"
-#include "GPTDisk.h"
-#include "DMGDisk.h"
+#include <drludif/DMGDisk.h>
 #include "FileReader.h"
 #include "CachedReader.h"
 #include "exceptions.h"
 #include "HFSHighLevelVolume.h"
+#include <drludif/PartitionedDisk.h>
 #ifdef DARLING
 #	include "stat_xlate.h"
 #endif
@@ -86,7 +85,7 @@ int main(int argc, const char** argv)
 void showHelp(const char* argv0)
 {
 	std::cerr << "Usage: " << argv0 << " <file> <mount-point> [fuse args]\n\n";
-	std::cerr << ".DMG files and raw disk images can be mounted.\n";
+	std::cerr << ".DMG images can be mounted.\n";
 	std::cerr << argv0 << " automatically selects the first HFS+/HFSX partition.\n";
 }
 
@@ -100,12 +99,6 @@ void openDisk(const char* path)
 
 	if (DMGDisk::isDMG(g_fileReader))
 		g_partitions.reset(new DMGDisk(g_fileReader));
-	else if (GPTDisk::isGPTDisk(g_fileReader))
-		g_partitions.reset(new GPTDisk(g_fileReader));
-	else if (AppleDisk::isAppleDisk(g_fileReader))
-		g_partitions.reset(new AppleDisk(g_fileReader));
-	else if (HFSVolume::isHFSPlus(g_fileReader))
-		volume.reset(new HFSVolume(g_fileReader));
 	else
 		throw function_not_implemented_error("Unsupported file format");
 
