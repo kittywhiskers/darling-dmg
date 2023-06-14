@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(udif)
+project(darling_udif)
 
 set(
     UDIF_SOURCES
@@ -30,14 +30,25 @@ find_package(LibXml2 REQUIRED)
 include_directories(${LIBXML2_INCLUDE_DIR})
 
 add_library(
-    udif STATIC
+    darling_udif STATIC
     "${UDIF_SOURCES}"
 )
 
 target_include_directories(
-    udif
+    darling_udif
     PRIVATE "${CMAKE_CURRENT_LIST_DIR}/src"
+    PUBLIC  "${CMAKE_CURRENT_LIST_DIR}/include"
 )
 
-target_link_libraries(udif -licuuc -lcrypto -lz -lbz2 ${LIBXML2_LIBRARY})
-install(TARGETS udif DESTINATION lib)
+target_link_libraries(
+    darling_udif -licuuc 
+                 -lcrypto 
+                 -lz 
+                 -lbz2
+                 ${LIBXML2_LIBRARY}
+)
+
+install(
+    TARGETS darling_udif
+    DESTINATION lib
+)
