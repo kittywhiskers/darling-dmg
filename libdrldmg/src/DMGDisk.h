@@ -4,7 +4,6 @@
 #include "PartitionedDisk.h"
 #include "Reader.h"
 #include "dmg.h"
-#include "CacheZone.h"
 
 struct _xmlDoc;
 typedef struct _xmlDoc xmlDoc;
@@ -37,7 +36,6 @@ private:
 	std::vector<Partition> m_partitions;
 	UDIFResourceFile m_udif;
 	xmlDoc *m_kolyXML;
-	CacheZone m_zone;
 };
 
 #endif

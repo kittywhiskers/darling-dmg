@@ -9,6 +9,8 @@
 #include <array>
 #include <unordered_map>
 
+#include "Reader.h"
+
 namespace std {
 template <typename A, typename B> struct hash<std::pair<A, B>>
 {
@@ -24,7 +26,7 @@ class CacheZone
 public:
 	CacheZone(size_t maxBlocks);
 	
-	enum { BLOCK_SIZE = 4096 };
+	enum { BLOCK_SIZE = RD_OPTIMAL_BLOCK_SIZE };
 	
 	void store(const std::string& vfile, uint64_t blockId, const uint8_t* data, size_t bytes);
 	size_t get(const std::string& vfile, uint64_t blockId, uint8_t* data, size_t offset, size_t maxBytes);

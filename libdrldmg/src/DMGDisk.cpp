@@ -10,7 +10,6 @@
 #include "DMGPartition.h"
 #include "AppleDisk.h"
 #include "GPTDisk.h"
-#include "CachedReader.h"
 #include "SubReader.h"
 #include "exceptions.h"
 
@@ -18,7 +17,7 @@
 #include <libxml/xpath.h>
 
 DMGDisk::DMGDisk(std::shared_ptr<Reader> reader)
-	: m_reader(reader), m_zone(40000)
+	: m_reader(reader)
 {
 	uint64_t offset = m_reader->length();
 
@@ -248,13 +247,9 @@ std::shared_ptr<Reader> DMGDisk::readerForPartition(int index)
 					data_offset,
 					m_reader->length() - data_offset));
 
-				return std::shared_ptr<Reader>(
-						new CachedReader(std::shared_ptr<Reader>(new DMGPartition(r, table)), &m_zone, partName.str())
-						);
+				return std::shared_ptr<Reader>(new DMGPartition(r, table));
 			} else {
-				return std::shared_ptr<Reader>(
-						new CachedReader(std::shared_ptr<Reader>(new DMGPartition(m_reader, table)), &m_zone, partName.str())
-						);
+				return std::shared_ptr<Reader>(new DMGPartition(m_reader, table));
 			}
 		}
 		

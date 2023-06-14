@@ -1,6 +1,9 @@
 #ifndef READER_H
 #define READER_H
-#include <stdint.h>
+
+#include <cstdint>
+
+#define RD_OPTIMAL_BLOCK_SIZE		4096
 
 class Reader
 {
