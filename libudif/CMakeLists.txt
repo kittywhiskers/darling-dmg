@@ -30,14 +30,14 @@ find_package(LibXml2 REQUIRED)
 include_directories(${LIBXML2_INCLUDE_DIR})
 
 add_library(
-    libudif STATIC
+    udif STATIC
     "${UDIF_SOURCES}"
 )
 
 target_include_directories(
-    libudif
+    udif
     PRIVATE "${CMAKE_CURRENT_LIST_DIR}/src"
 )
 
-target_link_libraries(libudif -licuuc -lcrypto -lz -lbz2 ${LIBXML2_LIBRARY})
-install(TARGETS libudif DESTINATION lib)
+target_link_libraries(udif -licuuc -lcrypto -lz -lbz2 ${LIBXML2_LIBRARY})
+install(TARGETS udif DESTINATION lib)
