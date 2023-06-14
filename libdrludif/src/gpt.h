@@ -1,7 +1,9 @@
 #ifndef GPT_H
 #define GPT_H
-#include <stdint.h>
+
 #include <drludif/endian.h>
+
+#include <cstdint>
 
 #pragma pack(1)
 

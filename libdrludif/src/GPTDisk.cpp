@@ -1,10 +1,13 @@
 #include "GPTDisk.h"
+
+#include "gpt.h"
+
+#include <drludif/SubReader.h>
+
+#include <cstring>
+#include <iomanip>
 #include <stdexcept>
 #include <sstream>
-#include <iomanip>
-#include <cstring>
-#include "gpt.h"
-#include <drludif/SubReader.h>
 
 GPTDisk::GPTDisk(std::shared_ptr<Reader> reader)
 : m_reader(reader)

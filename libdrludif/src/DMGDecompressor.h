@@ -1,8 +1,11 @@
 #ifndef DMGDECOMPRESSOR_H
 #define DMGDECOMPRESSOR_H
-#include <stdint.h>
+
 #include "dmg.h"
+
 #include <drludif/Reader.h>
+
+#include <cstdint>
 #include <memory>
 
 class DMGDecompressor

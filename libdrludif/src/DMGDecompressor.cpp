@@ -1,17 +1,22 @@
 #include "DMGDecompressor.h"
-#include <zlib.h>
+
+#include "adc.h"
+
 #include <bzlib.h>
+
 #ifdef COMPILE_WITH_LZFSE
 	#include <lzfse.h>
 #endif
-#include "adc.h"
-#include <cstring>
-#include <memory>
+
+#include <zlib.h>
+
 #include <algorithm>
+#include <cassert>
+#include <cstring>
+#include <iostream>
+#include <memory>
 #include <stdexcept>
 #include <vector>
-#include <iostream>
-#include <cassert>
 
 class DMGDecompressor_Zlib : public DMGDecompressor
 {

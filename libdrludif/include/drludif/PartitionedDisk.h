@@ -1,10 +1,12 @@
 #ifndef PARTITIONEDDISK_H
 #define PARTITIONEDDISK_H
+
 #include <drludif/Reader.h>
-#include <stdint.h>
+
+#include <cstdint>
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 class PartitionedDisk
 {

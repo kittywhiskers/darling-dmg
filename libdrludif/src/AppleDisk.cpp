@@ -1,8 +1,10 @@
 #include "AppleDisk.h"
-#include <stdexcept>
+
 #include <drludif/endian.h>
-#include <iostream>
 #include <drludif/SubReader.h>
+
+#include <iostream>
+#include <stdexcept>
 
 AppleDisk::AppleDisk(std::shared_ptr<Reader> reader)
 	: m_reader(reader)

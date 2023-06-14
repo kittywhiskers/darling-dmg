@@ -1,6 +1,8 @@
 #ifndef DMG_H
 #define DMG_H
 
+#include <cstdint>
+
 #pragma pack(1)
 #define UDIF_SIGNATURE 0x6B6F6C79
 

@@ -1,6 +1,7 @@
-#include <stdint.h>
-#include <cstring>
 #include "adc.h"
+
+#include <cstdint>
+#include <cstring>
 
 enum
 {

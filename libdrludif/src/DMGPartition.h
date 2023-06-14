@@ -1,9 +1,12 @@
 #ifndef DMGPARTITION_H
 #define DMGPARTITION_H
-#include <drludif/Reader.h>
+
 #include "dmg.h"
-#include <memory>
+
+#include <drludif/Reader.h>
+
 #include <map>
+#include <memory>
 
 class DMGPartition : public Reader
 {

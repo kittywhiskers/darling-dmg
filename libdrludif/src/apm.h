@@ -1,6 +1,7 @@
 #ifndef APM_H
 #define APM_H
-#include <stdint.h>
+
+#include <cstdint>
 
 #pragma pack(1)
 

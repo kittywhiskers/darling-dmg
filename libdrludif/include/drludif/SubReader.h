@@ -1,7 +1,9 @@
 #ifndef SUBREADER_H
 #define SUBREADER_H
+
 #include <drludif/Reader.h>
-#include <stdint.h>
+
+#include <cstdint>
 #include <memory>
 
 class SubReader : public Reader

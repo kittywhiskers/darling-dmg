@@ -1,13 +1,16 @@
 #include "DMGPartition.h"
-#include <drludif/endian.h>
-#include <stdexcept>
-#include <cstring>
+
 #include "DMGDecompressor.h"
-#include <memory>
+
+#include <drludif/endian.h>
+#include <drludif/SubReader.h>
+
 #include <algorithm>
 //#include <cstdio>
+#include <cstring>
 #include <iostream>
-#include <drludif/SubReader.h>
+#include <memory>
+#include <stdexcept>
 
 static const int SECTOR_SIZE = 512;
 

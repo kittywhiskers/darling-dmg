@@ -1,20 +1,24 @@
 #include <drludif/DMGDisk.h>
-#include <stdexcept>
-#include <drludif/endian.h>
+
 #include "dmg.h"
-#include <iostream>
-#include <cstring>
-#include <openssl/bio.h>
-#include <openssl/evp.h>
-#include <memory>
-#include <sstream>
 #include "DMGPartition.h"
 #include "AppleDisk.h"
 #include "GPTDisk.h"
+
+#include <drludif/endian.h>
 #include <drludif/SubReader.h>
+
+#include <openssl/bio.h>
+#include <openssl/evp.h>
 
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
+
+#include <cstring>
+#include <iostream>
+#include <memory>
+#include <stdexcept>
+#include <sstream>
 
 DMGDisk::DMGDisk(std::shared_ptr<Reader> reader)
 	: m_reader(reader)

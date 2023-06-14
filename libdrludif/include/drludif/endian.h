@@ -1,7 +1,7 @@
 #ifndef ENDIAN_H
 #define ENDIAN_H
 
-#include <stdint.h>
+#include <cstdint>
 
 #ifdef __FreeBSD__
 #include <sys/endian.h>
