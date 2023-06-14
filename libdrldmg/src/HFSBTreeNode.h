@@ -1,7 +1,7 @@
 #ifndef HFSBTREENODE_H
 #define HFSBTREENODE_H
 #include "hfsplus.h"
-#include "be.h"
+#include "be_hfs.h"
 #include <iostream>
 #include <vector>
 #include <memory>
