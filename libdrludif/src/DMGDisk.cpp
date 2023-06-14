@@ -1,6 +1,7 @@
 #include "DMGDisk.h"
 #include <stdexcept>
 #include "be.h"
+#include "dmg.h"
 #include <iostream>
 #include <cstring>
 #include <openssl/bio.h>
@@ -25,13 +26,16 @@ DMGDisk::DMGDisk(std::shared_ptr<Reader> reader)
 
 	offset -= 512;
 
-	if (m_reader->read(&m_udif, sizeof(m_udif), offset) != sizeof(m_udif))
+	UDIFResourceFile udif;
+	if (m_reader->read(&udif, sizeof(udif), offset) != sizeof(udif))
 		throw std::runtime_error("io_error: Cannot read the KOLY block");
 
-	if (be(m_udif.fUDIFSignature) != UDIF_SIGNATURE)
+	if (be(udif.fUDIFSignature) != UDIF_SIGNATURE)
 		throw std::runtime_error("io_error: Invalid KOLY block signature");
 	
-	loadKoly(m_udif);
+	m_udif = new UDIFResourceFile(udif);
+
+	loadKoly(*m_udif);
 }
 
 DMGDisk::~DMGDisk()
@@ -237,7 +241,7 @@ std::shared_ptr<Reader> DMGDisk::readerForPartition(int index)
 		{
 			std::stringstream partName;
 			uint64_t l = m_reader->length();
-			uint32_t data_offset = be(m_udif.fUDIFDataForkOffset);
+			uint32_t data_offset = be(m_udif->fUDIFDataForkOffset);
 
 			partName << "part-" << index;
 

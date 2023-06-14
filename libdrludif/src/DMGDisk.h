@@ -3,7 +3,6 @@
 
 #include "PartitionedDisk.h"
 #include "Reader.h"
-#include "dmg.h"
 
 struct _xmlDoc;
 typedef struct _xmlDoc xmlDoc;
@@ -14,6 +13,9 @@ typedef struct _xmlXPathContext xmlXPathContext;
 struct _xmlNodeSet;
 typedef struct _xmlNodeSet xmlNodeSet;
 
+struct BLKXTable;
+struct UDIFResourceFile;
+ 
 class DMGDisk : public PartitionedDisk
 {
 public:
@@ -34,7 +36,7 @@ private:
 private:
 	std::shared_ptr<Reader> m_reader;
 	std::vector<Partition> m_partitions;
-	UDIFResourceFile m_udif;
+	UDIFResourceFile* m_udif;
 	xmlDoc *m_kolyXML;
 };
 
