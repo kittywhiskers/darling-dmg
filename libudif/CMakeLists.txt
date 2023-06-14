@@ -15,11 +15,11 @@ set(
 )
 
 SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
-SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE) 
+SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
-	"${CMAKE_CURRENT_SOURCE_DIR}/../cmake_modules/")
+    "${CMAKE_CURRENT_SOURCE_DIR}/../cmake_modules/")
 
 add_definitions(-D_FILE_OFFSET_BITS=64)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -ggdb -O0")
@@ -41,10 +41,7 @@ target_include_directories(
 )
 
 target_link_libraries(
-    darling_udif -licuuc 
-                 -lcrypto 
-                 -lz 
-                 -lbz2
+    darling_udif -lcrypto
                  ${LIBXML2_LIBRARY}
 )
 
