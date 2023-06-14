@@ -1,6 +1,6 @@
 #ifndef FILEREADER_H
 #define FILEREADER_H
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include <string>
 
 class FileReader : public Reader

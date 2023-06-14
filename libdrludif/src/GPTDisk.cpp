@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <cstring>
 #include "gpt.h"
-#include "SubReader.h"
+#include <drludif/SubReader.h>
 
 GPTDisk::GPTDisk(std::shared_ptr<Reader> reader)
 : m_reader(reader)

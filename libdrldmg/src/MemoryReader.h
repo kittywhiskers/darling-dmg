@@ -1,6 +1,6 @@
 #ifndef MEMORYREADER_H
 #define MEMORYREADER_H
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include <vector>
 #include <stddef.h>
 

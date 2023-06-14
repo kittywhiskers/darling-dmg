@@ -1,6 +1,6 @@
 #include "MacBinary.h"
-#include "SubReader.h"
-#include "be.h"
+#include <drludif/SubReader.h>
+#include <drludif/endian.h>
 #include "exceptions.h"
 #include <stdexcept>
 

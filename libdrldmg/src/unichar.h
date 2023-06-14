@@ -2,7 +2,7 @@
 #define UNICHAR_H
 #include <string>
 #include "hfsplus.h"
-#include "be.h"
+#include <drludif/endian.h>
 
 std::string UnicharToString(uint16_t length, const unichar* string);
 bool EqualNoCase(const HFSString& str1, const std::string& str2);

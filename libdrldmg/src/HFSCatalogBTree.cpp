@@ -1,5 +1,5 @@
 #include "HFSCatalogBTree.h"
-#include "be.h"
+#include <drludif/endian.h>
 #include "exceptions.h"
 #include <unicode/unistr.h>
 #include "unichar.h"

@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include "exceptions.h"
-#include "be.h"
+#include <drludif/endian.h>
 
 // HFS+ compresses data in 64KB blocks
 static const unsigned int RUN_LENGTH = 64*1024;

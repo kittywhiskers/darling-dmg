@@ -1,6 +1,6 @@
 #ifndef DMGPARTITION_H
 #define DMGPARTITION_H
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include "dmg.h"
 #include <memory>
 #include <map>

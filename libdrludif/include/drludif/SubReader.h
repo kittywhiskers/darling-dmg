@@ -1,6 +1,6 @@
 #ifndef SUBREADER_H
 #define SUBREADER_H
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include <stdint.h>
 #include <memory>
 

@@ -1,6 +1,6 @@
 #include "HFSBTree.h"
 #include <stdexcept>
-#include "be.h"
+#include <drludif/endian.h>
 #include "hfsplus.h"
 #include "unichar.h"
 #include <iostream>

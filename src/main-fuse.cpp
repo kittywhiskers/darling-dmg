@@ -2,18 +2,18 @@
 #include <cstring>
 #include <iostream>
 #include <cstdio>
-#include "be.h"
+#include <drludif/endian.h>
 #include <errno.h>
 #include <stdexcept>
 #include <limits>
 #include <functional>
 #include "HFSVolume.h"
-#include "DMGDisk.h"
+#include <drludif/DMGDisk.h>
 #include "FileReader.h"
 #include "CachedReader.h"
 #include "exceptions.h"
 #include "HFSHighLevelVolume.h"
-#include "PartitionedDisk.h"
+#include <drludif/PartitionedDisk.h>
 #ifdef DARLING
 #	include "stat_xlate.h"
 #endif

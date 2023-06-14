@@ -1,8 +1,8 @@
 #ifndef GPTDISK_H
 #define GPTDISK_H
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include "gpt.h"
-#include "PartitionedDisk.h"
+#include <drludif/PartitionedDisk.h>
 #include <memory>
 
 class GPTDisk : public PartitionedDisk

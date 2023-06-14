@@ -1,7 +1,7 @@
 #ifndef MACBINARY_H
 #define MACBINARY_H
 #include <stdint.h>
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include <memory>
 
 #pragma pack(1)

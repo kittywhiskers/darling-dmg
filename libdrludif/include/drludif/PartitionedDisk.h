@@ -1,6 +1,6 @@
 #ifndef PARTITIONEDDISK_H
 #define PARTITIONEDDISK_H
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include <stdint.h>
 #include <string>
 #include <vector>

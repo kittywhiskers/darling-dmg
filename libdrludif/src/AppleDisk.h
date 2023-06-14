@@ -1,8 +1,8 @@
 #ifndef APPLEDISK_H
 #define APPLEDISK_H
 #include "apm.h"
-#include "Reader.h"
-#include "PartitionedDisk.h"
+#include <drludif/Reader.h>
+#include <drludif/PartitionedDisk.h>
 #include <string>
 #include <vector>
 

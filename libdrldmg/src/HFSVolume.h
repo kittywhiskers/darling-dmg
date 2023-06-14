@@ -2,7 +2,7 @@
 #define HFSVOLUME_H
 #include "hfsplus.h"
 #include "hfs.h"
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include "CacheZone.h"
 #include <string>
 #include <memory>

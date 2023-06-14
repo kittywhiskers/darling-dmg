@@ -1,6 +1,8 @@
-#ifndef BENDIAN_H
-#define BENDIAN_H
+#ifndef ENDIAN_H
+#define ENDIAN_H
+
 #include <stdint.h>
+
 #ifdef __FreeBSD__
 #include <sys/endian.h>
 #elif defined(__APPLE__)

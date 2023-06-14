@@ -1,6 +1,6 @@
-#include "DMGDisk.h"
+#include <drludif/DMGDisk.h>
 #include <stdexcept>
-#include "be.h"
+#include <drludif/endian.h>
 #include "dmg.h"
 #include <iostream>
 #include <cstring>
@@ -11,7 +11,7 @@
 #include "DMGPartition.h"
 #include "AppleDisk.h"
 #include "GPTDisk.h"
-#include "SubReader.h"
+#include <drludif/SubReader.h>
 
 #include <libxml/parser.h>
 #include <libxml/xpath.h>

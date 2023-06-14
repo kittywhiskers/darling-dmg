@@ -1,7 +1,7 @@
 #ifndef GPT_H
 #define GPT_H
 #include <stdint.h>
-#include "be.h"
+#include <drludif/endian.h>
 
 #pragma pack(1)
 

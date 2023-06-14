@@ -6,7 +6,7 @@
 #include <vector>
 #include <memory>
 #include <stdexcept>
-#include "Reader.h"
+#include <drludif/Reader.h>
 
 class HFSBTreeNode
 {

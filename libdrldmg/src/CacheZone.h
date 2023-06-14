@@ -9,7 +9,7 @@
 #include <array>
 #include <unordered_map>
 
-#include "Reader.h"
+#include <drludif/Reader.h>
 
 namespace std {
 template <typename A, typename B> struct hash<std::pair<A, B>>

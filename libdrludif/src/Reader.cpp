@@ -1,4 +1,4 @@
-#include "Reader.h"
+#include <drludif/Reader.h>
 
 void Reader::adviseOptimalBlock(uint64_t offset, uint64_t& blockStart, uint64_t& blockEnd)
 {

@@ -1,6 +1,6 @@
 #ifndef RESOURCE_FORK_H
 #define RESOURCE_FORK_H
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include "rsrc.h"
 #include <map>
 #include <memory>

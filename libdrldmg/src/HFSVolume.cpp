@@ -1,11 +1,11 @@
 #include "HFSVolume.h"
 #include <stdexcept>
-#include "be.h"
+#include <drludif/endian.h>
 #include "HFSFork.h"
 #include "HFSCatalogBTree.h"
 #include "HFSExtentsOverflowBTree.h"
 #include "HFSAttributeBTree.h"
-#include "SubReader.h"
+#include <drludif/SubReader.h>
 #include "exceptions.h"
 
 HFSVolume::HFSVolume(std::shared_ptr<Reader> reader)

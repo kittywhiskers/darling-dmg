@@ -1,6 +1,6 @@
 #ifndef CACHEDREADER_H
 #define CACHEDREADER_H
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include "CacheZone.h"
 #include <memory>
 

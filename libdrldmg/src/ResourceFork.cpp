@@ -1,9 +1,9 @@
 #include "ResourceFork.h"
 #include <stdexcept>
-#include "be.h"
+#include <drludif/endian.h>
 #include <stddef.h>
 #include <memory>
-#include "SubReader.h"
+#include <drludif/SubReader.h>
 
 ResourceFork::ResourceFork(std::shared_ptr<Reader> reader)
 	: m_reader(reader)

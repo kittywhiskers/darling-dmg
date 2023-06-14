@@ -1,5 +1,5 @@
 #include "HFSFork.h"
-#include "be.h"
+#include <drludif/endian.h>
 #include <algorithm>
 #include <iostream>
 #include <stdexcept>

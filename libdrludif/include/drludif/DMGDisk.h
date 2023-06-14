@@ -1,8 +1,8 @@
 #ifndef DMGDISK_H
 #define DMGDISK_H
 
-#include "PartitionedDisk.h"
-#include "Reader.h"
+#include <drludif/PartitionedDisk.h>
+#include <drludif/Reader.h>
 
 struct _xmlDoc;
 typedef struct _xmlDoc xmlDoc;

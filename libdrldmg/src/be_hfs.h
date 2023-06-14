@@ -1,7 +1,7 @@
 #ifndef BE_HFS_H
 #define BE_HFS_H
 
-#include "be.h"
+#include <drludif/endian.h>
 #include "hfsplus.h"
 
 template <> inline RecordType be(RecordType value)

@@ -1,6 +1,6 @@
 #ifndef ZLIBREADER_H
 #define ZLIBREADER_H
-#include "Reader.h"
+#include <drludif/Reader.h>
 #include <stdint.h>
 #include <zlib.h>
 #include <memory>
