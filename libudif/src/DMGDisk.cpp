@@ -10,25 +10,23 @@
 #include "DMGPartition.h"
 #include "AppleDisk.h"
 #include "GPTDisk.h"
-#include "CachedReader.h"
 #include "SubReader.h"
-#include "exceptions.h"
 
 DMGDisk::DMGDisk(std::shared_ptr<Reader> reader)
-	: m_reader(reader), m_zone(40000)
+	: m_reader(reader)
 {
 	uint64_t offset = m_reader->length();
 
 	if (offset < 512)
-		throw io_error("File to small to be a DMG");
+		throw std::runtime_error("io: File to small to be a DMG");
 
 	offset -= 512;
 
 	if (m_reader->read(&m_udif, sizeof(m_udif), offset) != sizeof(m_udif))
-		throw io_error("Cannot read the KOLY block");
+		throw std::runtime_error("io: Cannot read the KOLY block");
 
 	if (be(m_udif.fUDIFSignature) != UDIF_SIGNATURE)
-		throw io_error("Invalid KOLY block signature");
+		throw std::runtime_error("io: Invalid KOLY block signature");
 	
 	loadKoly(m_udif);
 }
@@ -97,7 +95,7 @@ void DMGDisk::loadKoly(const UDIFResourceFile& koly)
 				pdisk = new GPTDisk(rm1, r1);
 			}
 			else
-				throw function_not_implemented_error("Unknown partition table type");
+				throw std::runtime_error("unimplemented: Unknown partition table type");
 
 			m_partitions = pdisk->partitions();
 
@@ -126,7 +124,7 @@ bool DMGDisk::loadPartitionElements(xmlXPathContextPtr xpathContext, xmlNodeSetP
 			xpathObj = xmlXPathEvalExpression((const xmlChar*) "string(key[text()='Name']/following-sibling::string)", xpathContext);
 
 		if (!xpathObj || !xpathObj->stringval)
-			throw io_error("Invalid XML data, partition Name key not found");
+			throw std::runtime_error("io: Invalid XML data, partition Name key not found");
 		
 		table = loadBLKXTableForPartition(i);
 		
@@ -245,13 +243,9 @@ std::shared_ptr<Reader> DMGDisk::readerForPartition(int index)
 					data_offset,
 					m_reader->length() - data_offset));
 
-				return std::shared_ptr<Reader>(
-						new CachedReader(std::shared_ptr<Reader>(new DMGPartition(r, table)), &m_zone, partName.str())
-						);
+				return std::shared_ptr<Reader>(new DMGPartition(r, table));
 			} else {
-				return std::shared_ptr<Reader>(
-						new CachedReader(std::shared_ptr<Reader>(new DMGPartition(m_reader, table)), &m_zone, partName.str())
-						);
+				return std::shared_ptr<Reader>(new DMGPartition(m_reader, table));
 			}
 		}
 		

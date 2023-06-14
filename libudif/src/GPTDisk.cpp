@@ -5,7 +5,6 @@
 #include <cstring>
 #include "gpt.h"
 #include "SubReader.h"
-#include "exceptions.h"
 
 GPTDisk::GPTDisk(std::shared_ptr<Reader> reader)
 : m_reader(reader)
@@ -17,7 +16,7 @@ GPTDisk::GPTDisk(std::shared_ptr<Reader> protectiveMBR, std::shared_ptr<Reader> 
 	: m_reader(nullptr)
 {
 	if (!isGPTDisk(protectiveMBR))
-		throw io_error("Not a GPT disk!");
+		throw std::runtime_error("io: Not a GPT disk!");
 	loadPartitions(partitionTable);
 }
 

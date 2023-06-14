@@ -11,7 +11,6 @@
 #include <stdexcept>
 #include <vector>
 #include <iostream>
-#include "exceptions.h"
 #include <cassert>
 
 class DMGDecompressor_Zlib : public DMGDecompressor
@@ -82,7 +81,7 @@ int DMGDecompressor::readSome(char** ptr)
 	int rd = m_reader->read(m_buf, sizeof(m_buf), m_pos);
 	
 	if (rd <= 0)
-		throw io_error("DMGDecompressor cannot read from stream");
+		throw std::runtime_error("io: DMGDecompressor cannot read from stream");
 	
 	return rd;
 }
@@ -127,7 +126,7 @@ int32_t DMGDecompressor_Zlib::decompress(void* output, int32_t count)
 		{
 			bytesRead = readSome(&input);
 			if (bytesRead <= 0)
-				throw io_error("Error reading zlib stream");
+				throw std::runtime_error("io: Error reading zlib stream");
 			processed(bytesRead);
 			m_strm.next_in = (uint8_t*)input;
 			m_strm.avail_in = (uint32_t)bytesRead;
@@ -197,7 +196,7 @@ int32_t DMGDecompressor_Bzip2::decompress(void* output, int32_t count)
 		{
 			bytesRead = readSome(&input);
 			if (bytesRead <= 0)
-				throw io_error("Error reading bz2 stream");
+				throw std::runtime_error("io: Error reading bz2 stream");
 			processed(bytesRead);
 			m_strm.next_in = input;
 			m_strm.avail_in = (uint32_t)bytesRead;
@@ -239,7 +238,7 @@ int32_t DMGDecompressor_Bzip2::decompress(void* output, int32_t count, int64_t o
 int32_t DMGDecompressor_ADC::decompress(void* output, int32_t count, int64_t offset)
 {
 	if (offset < 0)
-		throw io_error("offset < 0");
+		throw std::runtime_error("io: offset < 0");
 
 	int32_t countLeft = count;
 	int nb_read;
@@ -257,7 +256,7 @@ int32_t DMGDecompressor_ADC::decompress(void* output, int32_t count, int64_t off
 		nb_input_char_used = adc_decompress(nb_read, (uint8_t*)inputBuffer, sizeof(decrompressBuffer), (uint8_t* )&decrompressBuffer[0], restartIndex, &bytes_written);
 
 		if (nb_input_char_used == 0)
-			throw io_error("nb_input_char_used == 0");
+			throw std::runtime_error("io: nb_input_char_used == 0");
 		
 		if ( bytes_written >= offset+countLeft) {
 			memcpy(output, decrompressBuffer+offset, countLeft);
@@ -323,7 +322,7 @@ int32_t DMGDecompressor_LZFSE::decompress(void* output, int32_t outputBytes)
 	size_t out_size = lzfse_decode_buffer((uint8_t *)output, outputBytes, (const uint8_t *)input, inputBytes, nullptr);
 
 	if (out_size == 0)
-		throw io_error("DMGDecompressor_LZFSE failed");
+		throw std::runtime_error("io: DMGDecompressor_LZFSE failed");
 
 	if (inputBig)
 		delete[] inputBig;
