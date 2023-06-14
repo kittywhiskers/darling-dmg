@@ -10,6 +10,7 @@ set(
 
 add_definitions(-D_FILE_OFFSET_BITS=64)
 
+add_subdirectory(libdrludif)
 add_subdirectory(libdrldmg)
 add_subdirectory(src)
 if (WITH_TESTS)
