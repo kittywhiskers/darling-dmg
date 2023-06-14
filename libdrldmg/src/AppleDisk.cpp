@@ -1,7 +1,6 @@
 #include "AppleDisk.h"
 #include <stdexcept>
 #include "be.h"
-#include "exceptions.h"
 #include <iostream>
 #include "SubReader.h"
 
@@ -24,7 +23,7 @@ void AppleDisk::load(std::shared_ptr<Reader> readerPM)
 	m_reader->read(&m_block0, sizeof(m_block0), 0);
 	
 	if (be(m_block0.sbSig) != BLOCK0_SIGNATURE)
-		throw io_error("Invalid block0 signature");
+		throw std::runtime_error("io_error: Invalid block0 signature");
 	
 	blockSize = be(m_block0.sbBlkSize);
 	

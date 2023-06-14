@@ -8,7 +8,6 @@
 //#include <cstdio>
 #include <iostream>
 #include "SubReader.h"
-#include "exceptions.h"
 
 static const int SECTOR_SIZE = 512;
 
@@ -41,7 +40,7 @@ void DMGPartition::adviseOptimalBlock(uint64_t offset, uint64_t& blockStart, uin
 	std::map<uint64_t, uint32_t>::iterator itRun = m_sectors.upper_bound(offset / SECTOR_SIZE);
 
 	if (itRun == m_sectors.begin())
-		throw io_error("Invalid run sector data");
+		throw std::runtime_error("io_error: Invalid run sector data");
 
 	if (itRun == m_sectors.end())
 		blockEnd = length();
@@ -73,7 +72,7 @@ int32_t DMGPartition::read(void* buf, int32_t count, uint64_t offset)
 			break; // read beyond EOF
 		
 		if (itRun == m_sectors.begin())
-			throw io_error("Invalid run sector data");
+			throw std::runtime_error("io_error: Invalid run sector data");
 		
 		itRun--; // move to the sector we want to read
 
@@ -85,7 +84,7 @@ int32_t DMGPartition::read(void* buf, int32_t count, uint64_t offset)
 		
 		thistime = readRun(((char*)buf) + done, itRun->second, offsetInSector, count-done);
 		if (!thistime)
-			throw io_error("Unexpected EOF from readRun");
+			throw std::runtime_error("io_error: Unexpected EOF from readRun");
 		
 		done += thistime;
 	}
@@ -116,7 +115,7 @@ int32_t DMGPartition::readRun(void* buf, int32_t runIndex, uint64_t offsetInSect
 			return m_disk->read(buf, count, be(run->compOffset) + be(m_table->dataStart) + offsetInSector);
 		case RunType::LZFSE:
 #ifndef COMPILE_WITH_LZFSE
-			throw function_not_implemented_error("LZFSE is not yet supported");
+			throw std::runtime_error("not_implemented: LZFSE is not yet supported");
 #endif
 		case RunType::Zlib:
 		case RunType::Bzip2:
@@ -139,7 +138,7 @@ int32_t DMGPartition::readRun(void* buf, int32_t runIndex, uint64_t offsetInSect
 
 			int32_t dec = decompressor->decompress((uint8_t*)buf, count, offsetInSector);
 			if (dec < count)
-				throw io_error("Error decompressing stream");
+				throw std::runtime_error("io_error: Error decompressing stream");
 			return count;
 		}
 		default:
